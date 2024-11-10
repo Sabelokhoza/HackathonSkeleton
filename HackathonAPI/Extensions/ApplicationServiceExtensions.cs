@@ -1,5 +1,7 @@
 ﻿using HackathonAPI.Configurations;
 using HackathonAPI.Data;
+using HackathonAPI.Interfaces;
+using HackathonAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace HackathonAPI.Extensions
@@ -18,6 +20,7 @@ namespace HackathonAPI.Extensions
                  .WithOrigins("http://localhost:4200", "https://localhost:4200"));
             });
             services.AddAutoMapper(typeof(AutomapperConfig));
+            services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
             return services;
         }
     }
