@@ -1,4 +1,5 @@
-﻿using HackathonAPI.Data;
+﻿using HackathonAPI.Configurations;
+using HackathonAPI.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace HackathonAPI.Extensions
@@ -16,7 +17,7 @@ namespace HackathonAPI.Extensions
                 opts.AddPolicy("AllowAny", opts => opts.AllowAnyHeader().AllowAnyMethod()
                  .WithOrigins("http://localhost:4200", "https://localhost:4200"));
             });
-
+            services.AddAutoMapper(typeof(AutomapperConfig));
             return services;
         }
     }
