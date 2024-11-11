@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using HackathonAPI.Interfaces;
 using HackathonAPI.Data;
+using HackathonAPI.Interfaces;
 using HackathonAPI.Models;
 using HackathonAPI.Parameters;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace HackathonAPI.Services
 {
@@ -57,7 +56,7 @@ namespace HackathonAPI.Services
                 .ToListAsync();
         }
 
-       
+
 
         public async Task<TResult> GetByIdAsync<TResult>(int? id)
         {
@@ -65,7 +64,7 @@ namespace HackathonAPI.Services
 
             if (result is null)
             {
-               throw new Exception("Not found ");
+                throw new Exception("Not found ");
             }
 
             return _mapper.Map<TResult>(result);
@@ -80,17 +79,15 @@ namespace HackathonAPI.Services
                 throw new Exception("Not found ");
             }
 
-                _context.Set<T>().Remove(entity);
+            _context.Set<T>().Remove(entity);
             await _context.SaveChangesAsync();
 
         }
 
-     
-
         public async Task UpdateAsync<TSource>(int id, TSource source)
         {
             var entity = await GetByIdAsync<T>(id);
-           
+
             _mapper.Map(source, entity);
 
             _context.Update(entity);
